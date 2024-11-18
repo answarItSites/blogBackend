@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
+const articleRoutes = require("../src/routes/articleRoutes");
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api", routes);
+app.use("/api", articleRoutes);
 
 // Error Handler
 app.use(errorHandler);
