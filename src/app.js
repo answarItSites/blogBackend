@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api", routes);
-app.use("/api", articleRoutes);
+app.use("/api/postArticle", articleRoutes);
 
 // Error Handler
 app.use(errorHandler);
