@@ -96,13 +96,34 @@ const deleteArticle = async (req, res) => {
 // Add this to your existing controller functions
 const updateArticle = async (req, res) => {
   try {
-    const { title, description, department, subDepartment, thumbnail } =
-      req.body;
+    const {
+      title,
+      shortDescription,
+      description,
+      department,
+      subDepartment,
+      thumbnail,
+    } = req.body;
+
+    // Validate required fields
+    if (
+      !title ||
+      !shortDescription ||
+      !description ||
+      !department ||
+      !thumbnail
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields",
+      });
+    }
 
     const updatedArticle = await Article.findByIdAndUpdate(
       req.params.id,
       {
         title,
+        shortDescription,
         description,
         department,
         subDepartment,
