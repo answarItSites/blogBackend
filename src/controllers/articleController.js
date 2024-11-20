@@ -3,8 +3,6 @@ const Article = require("../models/articleModel");
 // Controller to create a new article
 const createArticle = async (req, res) => {
   try {
-    console.log("Received request body:", req.body);
-
     const { title, description, department, subDepartment, thumbnail } =
       req.body;
 
