@@ -3,12 +3,19 @@ const Article = require("../models/articleModel");
 // Controller to create a new article
 const createArticle = async (req, res) => {
   try {
-    const { title, description, department, subDepartment, thumbnail } =
-      req.body;
+    const {
+      title,
+      shortDescription,
+      description,
+      department,
+      subDepartment,
+      thumbnail,
+    } = req.body;
 
     // Detailed validation
     const missingFields = [];
     if (!title) missingFields.push("title");
+    if (!shortDescription) missingFields.push("shortDescription");
     if (!description) missingFields.push("description");
     if (!department) missingFields.push("department");
     if (!thumbnail) missingFields.push("thumbnail");
@@ -23,6 +30,7 @@ const createArticle = async (req, res) => {
 
     const newArticle = new Article({
       title,
+      shortDescription,
       description,
       department,
       subDepartment: subDepartment || "",
