@@ -11,13 +11,17 @@ const articleSchema = new mongoose.Schema(
       type: String,
       required: true, // Description is required
     },
+    department: {
+      type: String,
+      required: true, // Department is required
+    },
+    subDepartment: {
+      type: String,
+      default: "", // Set a default empty string
+    },
     thumbnail: {
       type: String,
       required: true, // Thumbnail URL is required
-    },
-    link: {
-      type: String,
-      required: true, // Link is required
     },
   },
   {

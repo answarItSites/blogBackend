@@ -1,8 +1,17 @@
 const express = require("express");
-const { createArticle } = require("../controllers/articleController"); // Import the controller
 const router = express.Router();
+const {
+  createArticle,
+  getAllArticles,
+  deleteArticle,
+  updateArticle,
+  getArticleById,
+} = require("../controllers/articleController");
 
-// Route to create a new article
-router.post("/articles", createArticle); // Use the controller function
+router.post("/", createArticle);
+router.get("/", getAllArticles);
+router.get("/:id", getArticleById);
+router.delete("/:id", deleteArticle);
+router.put("/:id", updateArticle);
 
 module.exports = router;
