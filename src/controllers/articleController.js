@@ -39,8 +39,6 @@ const createArticle = async (req, res) => {
 
     const savedArticle = await newArticle.save();
 
-    console.log("Article saved successfully:", savedArticle);
-
     res.status(201).json({
       success: true,
       message: "🎉 Blog post created successfully!",
@@ -58,7 +56,30 @@ const createArticle = async (req, res) => {
 // Get all articles
 const getAllArticles = async (req, res) => {
   try {
-    const articles = await Article.find().sort({ createdAt: -1 });
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 9;
+    const skip = (page - 1) * limit;
+
+    // Build query
+    let query = {};
+
+    if (req.query.department && req.query.department !== "all") {
+      query.department = req.query.department;
+
+      if (req.query.subDepartment) {
+        query.subDepartment = req.query.subDepartment;
+      }
+    }
+
+    // Execute query with pagination
+    const articles = await Article.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .select(
+        "title department subDepartment thumbnail shortDescription createdAt"
+      );
+
     res.status(200).json({
       success: true,
       data: articles,
