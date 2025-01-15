@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 // Routes
 app.use("/api", routes);
 app.use("/api/postArticle", articleRoutes);
+app.use("/api/blogs", blogRoutes);
 
 // Error Handler
 app.use(errorHandler);
