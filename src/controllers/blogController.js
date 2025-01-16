@@ -1,9 +1,11 @@
-const Blog = require("../models/Blog"); // Assuming you have a Blog model set up
+const Article = require("../models/articleModel");
 
 // Get blog by ID
 exports.getBlogById = async (req, res) => {
+  console.log(req.params.id, "req.params.id");
+
   try {
-    const blog = await Blog.findById(req.params.id);
+    const blog = await Article.findById(req.params.id);
     if (!blog) {
       return res.status(404).json({ message: "Blog not found" });
     }

@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
 const articleRoutes = require("../src/routes/articleRoutes");
+const blogRoutes = require("./routes/blogRoutes");
 const cors = require("cors");
 
 dotenv.config();
