@@ -4,7 +4,6 @@ const connectDB = require("./config/db");
 const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
 const articleRoutes = require("../src/routes/articleRoutes");
-const blogRoutes = require("./routes/blogRoutes");
 const cors = require("cors");
 
 dotenv.config();
@@ -22,7 +21,6 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 // Routes
 app.use("/api", routes);
 app.use("/api/postArticle", articleRoutes);
-app.use("/api/blogs", blogRoutes);
 
 // Error Handler
 app.use(errorHandler);
