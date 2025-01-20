@@ -5,6 +5,9 @@ const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
 const articleRoutes = require("../src/routes/articleRoutes");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const userRoutes = require("./routes/userRoutes");
+require("dotenv").config();
 
 dotenv.config();
 
@@ -21,6 +24,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 // Routes
 app.use("/api", routes);
 app.use("/api/postArticle", articleRoutes);
+app.use("/api", userRoutes);
 
 // Error Handler
 app.use(errorHandler);
